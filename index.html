@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <br>
+    <!-- Basic Page Needs
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Point2Cyl</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Mobile Specific Metas
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- FONT
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+    <!-- CSS
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/footable.standalone.min.css">
+
+    <!-- Favicon
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Google icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                               m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-86869673-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+
+    <!-- Hover effect: https://codepen.io/nxworld/pen/ZYNOBZ -->
+    <style>
+      img {
+          display: block;
+      }
+
+      .column-50 {
+          float: left;
+          width: 50%;
+      }
+      .row-50:after {
+          content: "";
+          display: table;
+          clear: both;
+      }
+
+      .floating-teaser {
+          float: left;
+          width: 30%;
+          text-align: center;
+          padding: 15px;
+      }
+      .venue strong {
+          color: #99324b;
+      }
+
+      .benchmark {
+          width: 100%;
+          max-width: 960px;
+          overflow: scroll;
+          overflow-y: hidden;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <!-- Primary Page Layout
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container">
+      <h4 style="text-align:center">SCADE: NeRFs from Space Carving with Ambiguity-Aware Depth Estimates</h4>
+      <p align="center", style="margin-bottom:12px;">
+        <a class="simple" href="https://mikacuy.github.io/">Mikaela Angelina Uy</a><sup>1</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="http://ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://geometry.stanford.edu/member/guibas/">Leonidas Guibas</a><sup>1, 2</sup>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="simple" href="https://www.sfu.ca/~keli/">Ke Li</a><sup>2,3</sup>
+      </p>
+
+      <p align="center" style="margin-bottom:20px;">
+        <sup>1</sup>Stanford University
+        <span style="display:inline-block; width: 32px"></span>
+        <sup>2</sup>Google
+        <span style="display:inline-block; width: 32px"></span>
+        <sup>3</sup>Simon Fraser University        
+        <br>
+      </p>
+
+      <div class="venue">
+        <p align="center">Conference on Computer Vision and Pattern Recognition (CVPR), 2023</p>
+      </div>
+
+      <figure>
+        <img src="images/scade_teaser.png" style="width:100%"></img>
+        <!-- <br> -->
+      </figure>
+      <div class="caption">
+        <b>SCADE Overview</b>. We present SCADE, a novel technique for NeRF reconstruction under \emph{sparse, unconstrained views} for in-the-wild indoor scenes. We leverage on generalizable monocular depth priors and address to represent the inherent ambiguities of monocular depth by exploiting our <b>ambiguity-aware depth estimates</b> (leftmost). Our approach accounts for <em>multimodality</em> of both distributions using our novel <em>space carving loss</em> that seeks to <em>disambiguate</em> and find the common mode to <em>fuse</em> the information between different views (middle). As shown (rightmost), SCADE enables better photometric reconstruction especially in highly ambiguous scenes such as non-opaque surfaces.
+      </div>
+
+      <br><br>
+
+      <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+        <h5>Abstract</h5>
+        <p align="justify">
+          Neural radiance fields (NeRFs) have enabled high fidelity 3D reconstruction from multiple 2D input views. However, a well-known drawback of NeRFs is the less-than-ideal performance under a small number of views, due to insufficient constraints enforced by volumetric rendering. To address this issue, we introduce SCADE, a novel technique that improves NeRF reconstruction quality on sparse, unconstrained input views for in-the-wild indoor scenes. To constrain NeRF reconstruction, we leverage geometric priors in the form of per-view depth estimates produced with state-of-the-art monocular depth estimation models, which can generalize across scenes. A key challenge is that monocular depth estimation is an ill-posed problem, with inherent ambiguities. To handle this issue, we propose a new method that learns to predict, for each view, a continuous, multimodal distribution of depth estimates using conditional <em>Implicit Maximum Likelihood Estimation</em> (cIMLE). In order to disambiguate exploiting multiple views, we introduce an original space carving loss that guides the NeRF representation to fuse multiple hypothesized depth maps from each view and distill from them a common geometry that is consistent with all views. Experiments show that our approach enables higher fidelity novel view synthesis from sparse views.
+          <br>
+          <br>
+        </p>
+      </div>
+
+      <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+        <h5>Video</h5>
+      <center>
+      <p>Coming Soon!</p>
+<!--       <iframe width="560" height="315" src="https://www.youtube.com/embed/4R4Pi8qWXmo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> -->
+      </center> 
+      </div>
+
+
+    <div class="section">
+        <h5>Materials</h5>
+        <div class="container" style="width:95%">
+          <!-- Icon row -->
+<!--           <div class="row">
+            <div class="two columns">
+              <a href="https://arxiv.org/pdf/2112.09329.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_main.png"></a>
+            </div>
+            <div class="two columns">
+              <a href="assets/cvpr22_poster_final.pdf"><img style="border: 1px solid #ddd; border-radius: 4px; padding: 2px; width: 108px;" src="images/screenshot_poster.png"></a>
+            </div>
+          </div> -->
+          <!-- Link row -->
+<!--           <div class="row">
+            <div class="two columns">
+              <a href="https://arxiv.org/pdf/2112.09329.pdf">Paper</a>
+            </div>
+            <div class="two columns">
+              <a href="assets/cvpr22_poster_final.pdf">Poster</a>
+            </div>
+          </div> -->
+
+          <div class="row">
+              <br>
+              <!-- <a href="https://github.com/mikacuy/point2cyl">Code</a> -->
+              <p>Paper to be released soon!</p>
+          </div>
+
+          <div class="row">
+              <br>
+              <!-- <a href="https://github.com/mikacuy/point2cyl">Code</a> -->
+              <p>Code to be released soon!</p>
+          </div>
+
+        </div>
+      </div>
+
+  <br>
+
+<!--   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Problem Overview</h5>
+    <center>
+      <img src="images/SketchExtrudeFigure.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Reverse engineering from a raw geometry to a CAD model is an essential task to enable manipulation of the 3D data. We introduce a novel <b>geometry-aware</b> approach that casts the problem as an <b>extrusion cylinder decomposition</b> problem.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Extrusion Cylinder</h5>
+    <center>
+      <img src="images/definitions_v2_compressed.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            We predict <b>geometric proxies</b>, which are used to estimate extrusion parameters in <b>differentiable</b> and <b>closed-form</b> formulations. Namely, our geometric proxies are i) extrusion cylinder segmentation, ii) per-point normals
+            and iii) base-barrel segmentation, which are used to derive the extrusion cylinder parameters which are a) extrusion axis, b) extrusion center, c) normalized sketch, d) sketch scale and e) extrusion extent.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Our Network Architecture</h5>
+    <center>
+      <img src="images/network_architecture.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Network architecture of our Point2Cyl.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Qualitative Results</h5>
+    <center>
+      <img src="images/qualitative_v3-compressed.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Qualitative examples for reconstruction. Figure shows (top-to-bottom) (1) input point clouds, (2) our predicted segmentation, (3-5) corresponding set of extrusion cylinders and (6) our final reconstruction. This figure also illustrates that individual extrusion cylinders from our decomposition result from a variety of closed loops.
+          </p>
+        </div>
+        <br>
+    </center>
+        <center>
+      <img src="images/supp_quali2.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Qualitative examples from our Point2Cyl on the DeepCAD dataset. We also show comparisons with the conditional generation extension to DeepCAD and show that our approach result in output models that better match the input.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div> -->
+
+<!--   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Qualitative Results</h5>
+    <center>
+      <img src="images/SketchExtrudeFigure.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Visualization of retrieval followed by deformation on ShapeNet. Our network is able to retrieve models
+            that better fit after deformation despite having large geometric distances initially. Notice the big back part of the retrieved chair and the thick seat of the retrieved sofa, attributes that are not identical to the query. Yet, these parts properly fit the target after deformation. Our network is also able to retrieve a sofa with legs and a car with a trunk that are present in the desired targets. Moreover, our deformation-aware retrieval & deformation approach also allows us to preserve fine-details of the source model post-deformation as shown in the zoomed in regions.
+          </p>
+        </div>
+        <br>
+
+      <img src="images/scan2cad_fixed_compressed.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            (Top row and bottom left) Qualitative results of Scan-to-CAD. (Bottom right) Quantitative Results: We compare different retrieval methods on the Scan2CAD dataset. The left chart shows the mean fitting errors and the right chart shows the number of best candidates retrieved by different methods. Ours-Reg achieves the minimum overall fitting errors and the maximum number of best retrievals among all categories compared with other methods. 
+          </p>
+        </div>
+        <br>
+
+      <img src="images/image2cad3_compressed.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Qualitative results to show the feasibility of our approach for the Image-toCAD application. We show one of three input viewpoints used by Pixel2Mesh++ to produce their coarse mesh. We use this to retrieve a CAD model, which is then
+            deformed to fit the coarse mesh. Rigidity constraints ensure the quality of our output
+            as shown. 
+          </p>
+        </div>
+        <br>
+
+    </center>
+  </div> -->
+
+		<!-- -->
+	<div class="section">
+          <h5>Citation</h5> 
+  <pre style="margin:0"><code>@inproceedings{uy-scade-cvpr23,
+      title = {SCADE: NeRFs from Space Carving with Ambiguity-Aware Depth Estimates},
+      author = {Mikaela Angelina Uy and Ricardo Martin-Brualla and Leonidas Guibas and Ke Li},
+      booktitle = {Conference on Computer Vision and Pattern Recognition (CVPR)},
+      year = {2022}
+  }</code></pre>    			
+		</div>
+		
+        <!-- -->
+        <br> 
+        
+<!--   <div class="section">
+      <h5>Acknowledgements</h5>            
+      <p>
+      This work is supported by ARL grant W911NF-21-2-0104, a Vannevar Bush Faculty Fellowship, and gifts from the Autodesk and Adobe corporations. M. Sung also acknowledges the support by NRF grant (2021R1F1A1045604) and NST grant (CRC 21011) funded by the Korea government(MSIT) and grants from the Adobe and KT corporations.
+			</p>
+  </div> -->
+
+  </div>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/footable.min.js"></script>
+
+    <script type="text/javascript">
+      jQuery(function($){
+          $('.table').footable();
+      });
+    </script>
+
+    <!-- End Document
+         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
