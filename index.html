@@ -105,11 +105,11 @@
       </div>
 
       <figure>
-        <img src="images/scade_teaser_corrected.png" style="width:100%"></img>
+        <img src="images/scade_teaser_corrected_v2.png" style="width:100%"></img>
         <!-- <br> -->
       </figure>
       <div class="caption">
-        <b>SCADE Overview</b>. We present SCADE, a novel technique for NeRF reconstruction under \emph{sparse, unconstrained views} for in-the-wild indoor scenes. We leverage on generalizable monocular depth priors and address to represent the inherent ambiguities of monocular depth by exploiting our <b>ambiguity-aware depth estimates</b> (leftmost). Our approach accounts for <em>multimodality</em> of both distributions using our novel <em>space carving loss</em> that seeks to <em>disambiguate</em> and find the common mode to <em>fuse</em> the information between different views (middle). As shown (rightmost), SCADE enables better photometric reconstruction especially in highly ambiguous scenes such as non-opaque surfaces.
+        <b>SCADE Overview</b>. We present SCADE, a novel technique for NeRF reconstruction under <b><em>sparse, unconstrained views</em></b> for in-the-wild indoor scenes. We leverage on generalizable monocular depth priors and address to represent the inherent ambiguities of monocular depth by exploiting our <b><em>ambiguity-aware depth estimates</em></b> (leftmost). Our approach accounts for <b><em>multimodality</em></b> of both distributions using our novel <b><em>space carving loss</em></b> that seeks to <b><em>disambiguate</em></b> and find the common mode to <b><em>fuse</em></b> the information between different views (middle). As shown (rightmost), SCADE enables better photometric reconstruction especially in highly ambiguous scenes such as non-opaque surfaces.
       </div>
 
       <br><br>
@@ -117,7 +117,7 @@
       <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
         <h5>Abstract</h5>
         <p align="justify">
-          Neural radiance fields (NeRFs) have enabled high fidelity 3D reconstruction from multiple 2D input views. However, a well-known drawback of NeRFs is the less-than-ideal performance under a small number of views, due to insufficient constraints enforced by volumetric rendering. To address this issue, we introduce SCADE, a novel technique that improves NeRF reconstruction quality on sparse, unconstrained input views for in-the-wild indoor scenes. To constrain NeRF reconstruction, we leverage geometric priors in the form of per-view depth estimates produced with state-of-the-art monocular depth estimation models, which can generalize across scenes. A key challenge is that monocular depth estimation is an ill-posed problem, with inherent ambiguities. To handle this issue, we propose a new method that learns to predict, for each view, a continuous, multimodal distribution of depth estimates using conditional <em>Implicit Maximum Likelihood Estimation</em> (cIMLE). In order to disambiguate exploiting multiple views, we introduce an original space carving loss that guides the NeRF representation to fuse multiple hypothesized depth maps from each view and distill from them a common geometry that is consistent with all views. Experiments show that our approach enables higher fidelity novel view synthesis from sparse views.
+          Neural radiance fields (NeRFs) have enabled high fidelity 3D reconstruction from multiple 2D input views. However, a well-known drawback of NeRFs is the less-than-ideal performance under a small number of views, due to insufficient constraints enforced by volumetric rendering. To address this issue, we introduce <b>SCADE</b>, a novel technique that improves NeRF reconstruction quality on sparse, unconstrained input views for in-the-wild indoor scenes. To constrain NeRF reconstruction, we leverage geometric priors in the form of per-view depth estimates produced with state-of-the-art monocular depth estimation models, which can generalize across scenes. A key challenge is that monocular depth estimation is an ill-posed problem, with inherent <b>ambiguities</b>. To handle this issue, we propose a new method that learns to predict, for each view, a continuous, multimodal <b>distribution</b> of depth estimates using <em>conditional Implicit Maximum Likelihood Estimation</em> (cIMLE). In order to disambiguate exploiting multiple views, we introduce an original <b>space carving loss</b> that guides the NeRF representation to <b>fuse</b> multiple hypothesized depth maps from each view and distill from them a common geometry that is consistent with all views. Experiments show that our approach enables higher fidelity novel view synthesis from sparse views.
           <br>
           <br>
         </p>
@@ -177,13 +177,34 @@
 
   <br>
 
-<!--   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
-    <h5>Problem Overview</h5>
+
+<div class="col-md-8 col-md-offset-2">
+    <h5>Demo</h5>
+    <!-- <h6>Scannet</h6><br> -->
+    <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
+      <source src="video/scannet_demo.mp4" type="video/mp4">
+    </video>
+    <!-- <h6>In the Wild dataset</h6><br> -->
+    <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
+      <source src="video/glass_scene_demo.mp4" type="video/mp4">
+    </video>
+    <!-- <h6>Tanks and Temples</h6><br> -->
+    <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
+      <source src="video/church_demo.mp4" type="video/mp4">
+    </video>    
+</div>
+
+
+<br>
+<br>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Overview</h5>
     <center>
-      <img src="images/SketchExtrudeFigure.png" style="width:70%"></img>
+      <img src="images/depth_ambiguities.png" style="width:70%"></img>
         <div class="caption" >
           <p align="justify">
-            Reverse engineering from a raw geometry to a CAD model is an essential task to enable manipulation of the 3D data. We introduce a novel <b>geometry-aware</b> approach that casts the problem as an <b>extrusion cylinder decomposition</b> problem.
+            The main idea is to leverage depth as a prior in order to constrain nerf optimization under the sparse view regime. However, when estimating depth from a single image, there can be multiple, equally valid depth estimates, these arise from inherent <b>ambiguities</b> such as albedo vs shading, scale, or non-opaque surfaces.
           </p>
         </div>
         <br>
@@ -191,13 +212,12 @@
   </div>
 
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
-    <h5>Extrusion Cylinder</h5>
+    <h5>Our Ambiguity-Aware Prior</h5>
     <center>
-      <img src="images/definitions_v2_compressed.png" style="width:70%"></img>
+      <img src="images/architecture.png" style="width:70%"></img>
         <div class="caption" >
           <p align="justify">
-            We predict <b>geometric proxies</b>, which are used to estimate extrusion parameters in <b>differentiable</b> and <b>closed-form</b> formulations. Namely, our geometric proxies are i) extrusion cylinder segmentation, ii) per-point normals
-            and iii) base-barrel segmentation, which are used to derive the extrusion cylinder parameters which are a) extrusion axis, b) extrusion center, c) normalized sketch, d) sketch scale and e) extrusion extent.
+            We retain these ambiguities at the stage of monocular depth estimation by representing depth as a <b>distribution</b>, which can be multimodal, represented with samples using <b>conditional Implicit Maximum Likelihood Estimation</b> (cIMLE) to capture variable depth modes. The network architecture is a simple combination of a state-of-the-art monocular depth estimation network, LeReS, with cIMLE that is implemented by adding AdaIn layers to the encoder. This allows us to output a distribution of possible depths from a single image, represented as a set of samples.
           </p>
         </div>
         <br>
@@ -205,39 +225,107 @@
   </div>
 
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
-    <h5>Our Network Architecture</h5>
+    <h5>Ambiguity-Aware Depth Estimates</h5>
     <center>
-      <img src="images/network_architecture.png" style="width:90%"></img>
+      <img src="images/ambiguity_aware_prior_estimates.png" style="width:70%"></img>
         <div class="caption" >
           <p align="justify">
-            Network architecture of our Point2Cyl.
+            We find that our ambiguity aware prior is able to capture the different ambiguities, such as albedo vs shading (top), different scales of concavity (middle) and multimodality in the outputs of non-opaque surfaces (bottom).
           </p>
         </div>
         <br>
     </center>
   </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Why does it work?</h5>
+    <center>
+      <img src="images/taskonomy_reflective_glass.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            We achieve variable depth modes by exploiting inconsistently labeled training data. In the Taskonomy dataset that was used to train our prior, different training images with non-opaque surfaces label depth differently: shooting through the glass (left), on the glass (middle), or a mixture of both (right). Despite multiple possible depth labels, each image only has one ground truth label. Training with cIMLE allows our prior to model these multiple possible (ambiguous) outputs through sampling, even when given only one label per image. We also observe that our trained prior is also able to capture variable modes on reflective surfaces that typical monocular depth estimation networks struggle on.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>Space Carving Intuition</h5>
+    <center>
+      <img src="images/space_carving_illustration.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            When given a sparse set of views, we are able to resolve the ambiguities by fusing information from the multiple views. To do so, we draw inspiration from the classical space carving. For every view, illustrated by the green and yellow cameras, we have multiple depth hypothesis from our ambiguity-aware prior. For simplicity, let’s assume there are two hypothesis per camera (labelled 1 and 2). Space carving eliminates inconsistent hypotheses: E.g. green hypothesis 2 is not consistent with both yellow hypotheses because if it were consistent, everything in front of the green camera cone should be empty.
+
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
+  <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
+    <h5>SCADE</h5>
+    <center>
+      <img src="images/scade_method.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Thus in SCADE, we <b>distill</b> the <b>consistent</b> hypotheses for each view into a global 3D geometry represented with a NeRF. To achieve this, we introduce our novel <b>space carving loss</b> function on the two distributions: our ambiguity-aware prior and the ray termination distance of NeRF, that is differentiable and sample-based. Our space carving loss drives the learned depth distribution from the NeRF to be consistent with <b>some</b> depth hypothesis in <b>every</b> view. Our resulting loss function is <b>mode seeking</b>. Moreover, as opposed to existing works which supervise 2D moments, we <b>supervise at individual samples</b> along each ray in 3D.
+          </p>
+        </div>
+        <br>
+    </center>
+  </div>
+
 
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
     <h5>Qualitative Results</h5>
     <center>
-      <img src="images/qualitative_v3-compressed.png" style="width:90%"></img>
+      <img src="images/results_wild.png" style="width:90%"></img>
         <div class="caption" >
           <p align="justify">
-            Qualitative examples for reconstruction. Figure shows (top-to-bottom) (1) input point clouds, (2) our predicted segmentation, (3-5) corresponding set of extrusion cylinders and (6) our final reconstruction. This figure also illustrates that individual extrusion cylinders from our decomposition result from a variety of closed loops.
+            Qualitative examples from In-the-Wild dataset. As shown, we are able to recover the room behind the glass better the baselines, whose results are more blurry (1st, 3rd, 4th column). Also, SCADE is able to recover crisp shapes of objects such as the thin table leg and the white chair (2nd, last column), and we are also able to clear up dust near the microwave and printer compared to the baselines (5th, last column).
           </p>
         </div>
         <br>
     </center>
-        <center>
-      <img src="images/supp_quali2.png" style="width:70%"></img>
+    <center>
+      <img src="images/results_scannet.png" style="width:90%"></img>
         <div class="caption" >
           <p align="justify">
-            Qualitative examples from our Point2Cyl on the DeepCAD dataset. We also show comparisons with the conditional generation extension to DeepCAD and show that our approach result in output models that better match the input.
+            Qualitative examples from Scannet. As shown, SCADE is able to avoid producing the clouds of dust that are present in the results of baselines (1st, 3rd, last columns). Moreover, SCADE is also able to snap and recover objects in the scene such as the details on the blinds (2nd column), the back of the chair (4th column) and the legs of the piano stool (5th column).
           </p>
         </div>
         <br>
     </center>
-  </div> -->
+    <center>
+      <img src="images/results_tnt.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            More qualitative examples from the Tanks and Temples dataset.
+          </p>
+        </div>
+        <br>
+    </center>
+    <center>
+      <img src="images/results_depth.png" style="width:90%"></img>
+        <div class="caption" >
+          <p align="justify">
+            Samples from our Ambiguity-Aware Depth Estimates on train images of the different scenes used in our experiments. Ambiguity is shown in [Left; right]: (a) How far the back wall is relative to the chair as well as the width of the cabinet and how far it is relative to the desk; whether the door is at a different compared to the wall and the relative depth of the the second chair w.r.t. to the nearer chair and the wall. (b) Depth of the bookshelf; albedo v.s. shading of the door w.r.t to the door frame. (c) Whether the painted texture is convex or is flat (i.e. just painted) on the wall; whether there is a far back door or is just a texture on the wall. (d) Non-opaque surface ambiguity due to the glass cabinet; glass door behind the sofa is also non-opaque. 
+          </p>
+        </div>
+        <br>
+    </center> 
+    <center>
+      <img src="images/results_fusion.png" style="width:70%"></img>
+        <div class="caption" >
+          <p align="justify">
+            We also rendered depthmaps and fusion results using TSDF Fusion on a Scannet scene. Notice that SCADE is able to recover better geometry compared to DDP -- see corner of the calendar, cabinets and office chair in the right image..
+          </p>
+        </div>
+        <br>
+    </center>       
+  </div>
 
 <!--   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
     <h5>Qualitative Results</h5>
