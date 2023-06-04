@@ -115,6 +115,7 @@
       display: none;
       animation: 0.6s ease-in-out;
       height: 70vh;
+      /*height: auto;*/
     }
 
     .carousel-item > .carousel-img {
@@ -271,7 +272,7 @@
       left: 50%;
       /*min-width: 100%;*/
       /*min-height: 100%;*/
-      width: auto;
+      width: 180%;
       /*height: auto;*/
       z-index: 0;
       -webkit-transform: translateX(-50%) translateY(-50%);
@@ -280,6 +281,9 @@
       /* pointer-events: none; */
     }
 
+    .position-initial {
+      position: initial !important;
+    }
 
     </style>
   </head>
@@ -389,26 +393,77 @@
 
 <div class="col-md-8 col-md-offset-2">
     <h5>Demo</h5>
-<div id="Demo" class="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <video class="carousel-video" autoplay muted loop>
-          <source src="video/scannet_demo.mp4" type="video/mp4">
+
+<div class="position-relative"> 
+  <div id="Demo" class="carousel">
+
+<div class="container">
+  <div class="row">
+    <div class="col-12 position-initial">
+
+    <div class="carousel-inner position-initial">
+      <div class="carousel-item active">
+        <video class="carousel-video" autoplay muted loop webkitallowfullscreen mozallowfullscreen allowfullscreen>
+            <source src="video/scannet_demo.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div class="carousel-item">
+        <video class="carousel-video"  autoplay muted loop webkitallowfullscreen mozallowfullscreen allowfullscreen>
+            <source src="video/glass_scene_demo.mp4" type="video/mp4">
         </video>
-    </div>
-    <div class="carousel-item">
-      <video class="carousel-video"  autoplay muted loop playsinline>
-          <source src="video/glass_scene_demo.mp4" type="video/mp4">
-      </video>
+      </div>
+      <div class="carousel-item">
+        <video class="carousel-video" autoplay muted loop webkitallowfullscreen mozallowfullscreen allowfullscreen>
+            <source src="video/church_demo.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
 
-    <div class="carousel-item">
-      <video class="carousel-video" autoplay muted loop playsinline>
-          <source src="video/church_demo.mp4" type="video/mp4">
-      </video>
-    </div>
+</div>
+</div>
+</div>
+
+  <a id="carouselPrev" class="carousel-control-prev" href="#Demo" role="button">
+    <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+    <span class="carousel-control-prev-icon"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a id="carouselNext" class="carousel-control-next" href="#Demo" role="button">
+    <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+    <span class="carousel-control-next-icon"></span>
+    <span class="sr-only">Next</span>
+  </a>
 
   </div>
+<!-- </div>
+</div>
+</div> -->
+
+</div>
+
+<!-- <div class="position-relative">    
+  <div id="Demo" class="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <video class="carousel-video" autoplay muted loop>
+            <source src="video/scannet_demo.mp4" type="video/mp4">
+          </video>
+      </div>
+      <div class="carousel-item">
+        <video class="carousel-video"  autoplay muted loop playsinline>
+            <source src="video/glass_scene_demo.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="carousel-item">
+        <video class="carousel-video" autoplay muted loop playsinline>
+            <source src="video/church_demo.mp4" type="video/mp4">
+        </video>
+      </div>
+
+    </div>
+  </div>
+</div>
 
   <a id="carouselPrev" class="carousel-control-prev" href="#Demo" role="button">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -418,7 +473,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
-</div>
+ -->
 
 <script>
   const carousel = document.getElementById("Demo");
