@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+<!--   <link rel=”stylesheet” href=”https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css”rel=”nofollow” integrity=”sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I” crossorigin=”anonymous”>
+ -->
+
     <br>
     <!-- Basic Page Needs
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -22,6 +26,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/footable.standalone.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
 
     <!-- Favicon
          –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -39,6 +44,11 @@
       ga('create', 'UA-86869673-1', 'auto');
       ga('send', 'pageview');
     </script>
+
+
+    <!-- <script src=”https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js” integrity=”sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo” crossorigin=”anonymous”></script>
+    <script src=”https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js” integrity=”sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/” crossorigin=”anonymous”></script> -->
+
 
     <!-- Hover effect: https://codepen.io/nxworld/pen/ZYNOBZ -->
     <style>
@@ -178,21 +188,251 @@
   <br>
 
 
+
 <div class="col-md-8 col-md-offset-2">
     <h5>Demo</h5>
-    <!-- <h6>Scannet</h6><br> -->
+<div id="Demo" class="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <video class="carousel-video" autoplay muted loop>
+          <source src="video/scannet_demo.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="carousel-item">
+      <video class="carousel-video"  autoplay muted loop playsinline>
+          <source src="video/glass_scene_demo.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="carousel-item">
+      <video class="carousel-video" autoplay muted loop playsinline>
+          <source src="video/church_demo.mp4" type="video/mp4">
+      </video>
+    </div>
+
+  </div>
+
+  <a id="carouselPrev" class="carousel-control-prev" href="#Demo" role="button">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+  <a id="carouselNext" class="carousel-control-next" href="#Demo" role="button">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<script>
+  const carousel = document.getElementById("Demo");
+  const items = carousel.querySelectorAll(".carousel-item");
+  let currentItem = 0;
+  let isActive = true;
+
+  function setCurrentItem(index) {
+    currentItem = (index + items.length) % items.length;
+  }
+
+  function hideItem(direction) {
+    isActive = false;
+    items[currentItem].classList.add(direction);
+    items[currentItem].addEventListener("animationend", function() {
+      this.classList.remove("active", direction);
+    });
+  }
+
+  function showItem(direction) {
+    items[currentItem].classList.add("next", direction);
+    items[currentItem].addEventListener("animationend", function() {
+      this.classList.remove("next", direction);
+      this.classList.add("active");
+      isActive = true;
+    });
+  }
+
+  document.getElementById("carouselPrev").addEventListener("click", function(e) {
+    e.preventDefault();
+    if (isActive) {
+      hideItem("to-right");
+      setCurrentItem(currentItem - 1);
+      showItem("from-left");
+    }
+  });
+
+  document.getElementById("carouselNext").addEventListener("click", function(e) {
+    e.preventDefault();
+    if (isActive) {
+      hideItem("to-left");
+      setCurrentItem(currentItem + 1);
+      showItem("from-right");
+    }
+  });  
+</script>
+
+<p align="justify">
+  Toggle arrows to browse through demos from the different datasets.
+</p>
+
+<!-- <button onclick="myFunction1()">Scannet</button>
+
+<div id="myDIV1">
     <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
       <source src="video/scannet_demo.mp4" type="video/mp4">
     </video>
-    <!-- <h6>In the Wild dataset</h6><br> -->
+</div>
+
+<script>
+function myFunction1() {
+  var x = document.getElementById("myDIV1");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+<br>
+
+<button onclick="myFunction2()">In-the-Wild</button>
+
+<div id="myDIV2">
     <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
       <source src="video/glass_scene_demo.mp4" type="video/mp4">
     </video>
-    <!-- <h6>Tanks and Temples</h6><br> -->
+</div>
+<script>
+function myFunction2() {
+  var x = document.getElementById("myDIV2");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+
+<br>
+
+<button onclick="myFunction3()">Tanks and Temples</button>
+
+<div id="myDIV3">
     <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
       <source src="video/church_demo.mp4" type="video/mp4">
     </video>    
 </div>
+
+<br>
+
+<script>
+function myFunction3() {
+  var x = document.getElementById("myDIV3");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script> -->
+
+
+    <!-- <h6>Scannet</h6><br> -->
+<!--     <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
+      <source src="video/scannet_demo.mp4" type="video/mp4">
+    </video> -->
+    <!-- <h6>In the Wild dataset</h6><br> -->
+<!--     <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
+      <source src="video/glass_scene_demo.mp4" type="video/mp4">
+    </video> -->
+    <!-- <h6>Tanks and Temples</h6><br> -->
+<!--     <video id="v0" width="90%" autoplay="" loop="" muted="" controls="">
+      <source src="video/church_demo.mp4" type="video/mp4">
+    </video>     -->
+
+
+</div>
+
+
+<div class="col-md-8 col-md-offset-2">
+    <h5>Qualitative Results</h5>
+<div id="Qualitative_Results" class="carousel2">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="carousel-img" src="images/results_scannet.png">
+    </div>
+    <div class="carousel-item">
+      <img class="carousel-img" src="images/results_wild.png">
+    </div>
+
+    <div class="carousel-item">
+      <img class="carousel-img" src="images/results_tnt.png">
+    </div>
+
+  </div>
+
+  <a id="carouselPrev2" class="carousel-control-prev" href="#Qualitative_Results" role="button">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+  <a id="carouselNext2" class="carousel-control-next" href="#Qualitative_Results" role="button">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<script>
+  const carousel2 = document.getElementById("Qualitative_Results");
+  const items2 = carousel2.querySelectorAll(".carousel-item");
+  let currentItem2 = 0;
+  let isActive2 = true;
+
+  function setCurrentItem2(index) {
+    currentItem2 = (index + items2.length) % items2.length;
+  }
+
+  function hideItem2(direction) {
+    isActive2 = false;
+    items2[currentItem2].classList.add(direction);
+    items2[currentItem2].addEventListener("animationend", function() {
+      this.classList.remove("active", direction);
+    });
+  }
+
+  function showItem2(direction) {
+    items2[currentItem2].classList.add("next", direction);
+    items2[currentItem2].addEventListener("animationend", function() {
+      this.classList.remove("next", direction);
+      this.classList.add("active");
+      isActive2 = true;
+    });
+  }
+
+  document.getElementById("carouselPrev2").addEventListener("click", function(e) {
+    e.preventDefault();
+    if (isActive2) {
+      hideItem2("to-right");
+      setCurrentItem2(currentItem2 - 1);
+      showItem2("from-left");
+    }
+  });
+
+  document.getElementById("carouselNext2").addEventListener("click", function(e) {
+    e.preventDefault();
+    if (isActive2) {
+      hideItem2("to-left");
+      setCurrentItem2(currentItem2 + 1);
+      showItem2("from-right");
+    }
+  });  
+</script>
+
+<br><br>
+<p align="justify">
+  Toggle arrows to browse through results from the different datasets.
+</p>
+
+</div>
+
 
 
 <br>
@@ -279,8 +519,8 @@
 
 
   <div id="teaser" class="container" style="width:100%; margin:0; padding:0">
-    <h5>Qualitative Results</h5>
-    <center>
+    <h5>Additional Results</h5>
+<!--     <center>
       <img src="images/results_wild.png" style="width:90%"></img>
         <div class="caption" >
           <p align="justify">
@@ -306,7 +546,7 @@
           </p>
         </div>
         <br>
-    </center>
+    </center> -->
     <center>
       <img src="images/results_depth.png" style="width:90%"></img>
         <div class="caption" >
@@ -385,6 +625,7 @@
 
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/footable.min.js"></script>
+    <!-- <script type="text/javascript" src="../js/bootstrap.min.js"></script> -->
 
     <script type="text/javascript">
       jQuery(function($){
