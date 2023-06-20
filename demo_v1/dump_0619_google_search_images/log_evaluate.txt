@@ -1,0 +1,4 @@
+Namespace(ada_version='v2', backbone='resnext101', cimle_version='enc', ckpt='model.pth', d_latent=32, dataroot='google_search_images/', default_scale=0.5, default_shift=0.0, dump_dir='dump_0619_google_search_images/', import_from_logdir=False, is_nsvf=False, is_wild=True, logdir='../ambiguity_aware_prior_pretrained_model/', num_samples=20, phase='test', rescaled=False, seed_num=1234, visu_all=True)
+====================
+
+Num evaluated= 30
