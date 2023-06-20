@@ -48,7 +48,7 @@ a{ text-decoration:none; }
 		.main footer a:hover::after{ opacity:1; margin-left:5px; }
 		
 #gallery{ float:right; width:65%; }
-	#gallery li{ list-style:none; perspective:100px; -webkit-perspective:100px; margin:1px; float:right; position:relative; transition:.1s; -webkit-transition:0.1s; }
+	#gallery li{ list-style:none; perspective:100px; -webkit-perspective:100px; margin:8px; float:right; position:relative; transition:.1s; -webkit-transition:0.1s; }
 		#gallery li.video::before{ content:'\25BA'; color:#FFF; font-size:20px; height:20px; width:20px; line-height:0.9; position:absolute; bottom:3px; left:4px; z-index:1; background:rgba(0,0,0,0.4); box-shadow:0 0 0 3px rgba(0,0,0,0.4); border-radius:0 3px 0 0; pointer-events:none; opacity:0; transition:.5s 0.2s; }
 		#gallery li.loaded.video::before{ opacity:1; }
 		#gallery a{ display:block; width:200px; height:150px; vertical-align:bottom; overflow:hidden; background:rgba(0,0,0,0.1);
@@ -68,7 +68,7 @@ a{ text-decoration:none; }
 	.main h1{ font-size:5.2em; }
 	.main h2{ font-size:1.5em; }
 	.btn{ position:absolute; right:10px; top:26px; }
-	#gallery li{ margin:0; }
+	#gallery li{ margin:100; }
 	#gallery a{ width:55px; height:50px; }
 	#gallery li.loaded:hover img, #gallery li.loaded:hover{ transform:none; -webkit-transform:none; }
 	.main footer{ margin:10px 0; }
